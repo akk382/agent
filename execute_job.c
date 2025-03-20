@@ -11,7 +11,7 @@
  */
 
 #include "execute_job.h"
-#include <cjson/cJSON.h>
+#include "cJSON.h"
 #include <stdio.h>
 #include <stdlib.h>
 

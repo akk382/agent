@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  broker:
+    image: apache/kafka:latest
+    container_name: broker
+    ports:
+      - "9092:9092"
+      - "9999:9999"
+    networks:
+      - backend
+
+  agent:
+    image: agent
+    container_name: test_agent
+    build:
+      dockerfile: Dockerfile
+      tags:
+        - "agent:latest"
+    depends_on:
+      - broker
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.host_binding_ipv4: "127.0.0.1"

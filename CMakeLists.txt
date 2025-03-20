@@ -3,7 +3,11 @@ project(agent C)
 
 set(CMAKE_C_STANDARD 11)
 
-find_package(cJSON REQUIRED)
+#find_package(cJSON REQUIRED)
+
+set(RDKAFKA_INCLUDE_DIR "usr/include/librdkafka")
+#set(RDKAFKA_LIBRARY "usr/lib/librdkafka.so") # for arch linux
+set(RDKAFKA_LIBRARY "/usr/lib/x86_64-linux-gnu/librdkafka.so")
 
 add_library(agent
         consumer.h
@@ -13,7 +17,11 @@ add_library(agent
         execute_job.c
         consumer.c
         producer.c
-        main.c
-        test_producer.c)
+        cJSON.c
+        cJSON.h)
 
-target_link_libraries(agent cjson)
+add_executable(agent_exec test_producer.c)
+
+target_link_libraries(agent_exec PRIVATE agent ${RDKAFKA_LIBRARY})
+
+target_include_directories(agent_exec PRIVATE ${RDKAFKA_INCLUDE_DIR})

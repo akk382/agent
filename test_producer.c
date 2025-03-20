@@ -2,7 +2,7 @@
 // Created by Arrun on 3/19/2025.
 //
 
-#include "cjson/cJSON.h"
+#include "cJSON.h"
 #include "producer.h"
 #include "consumer.h"
 #include <stdlib.h>

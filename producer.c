@@ -3,6 +3,8 @@
 //
 
 #include <librdkafka/rdkafka.h>
+#include <stdlib.h>
+#include <string.h>
 
 void send_job_result(const char* job_result, char* topic) {
     rd_kafka_t *rk;
@@ -10,7 +12,7 @@ void send_job_result(const char* job_result, char* topic) {
     rd_kafka_resp_err_t err;
 
     conf = rd_kafka_conf_new();
-    rd_kafka_conf_set(conf, "bootstrap.servers", "localhost:9092", NULL, 0);
+    rd_kafka_conf_set(conf, "bootstrap.servers", "broker:9092", NULL, 0);
 
     // Create Kafka producer
     rk = rd_kafka_new(RD_KAFKA_PRODUCER, conf, NULL, 0);

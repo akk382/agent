@@ -4,6 +4,7 @@
 
 #include <librdkafka/rdkafka.h>
 #include "execute_job.h"
+#include <stdlib.h>
 
 void consume_jobs() {
     rd_kafka_t *rk; // Kafka handle
@@ -13,7 +14,7 @@ void consume_jobs() {
     // Kafka consumer configuration
     conf = rd_kafka_conf_new();
     rd_kafka_conf_set(conf, "group.id", "agent-group", NULL, 0);
-    rd_kafka_conf_set(conf, "bootstrap.servers", "localhost:9092", NULL, 0);
+    rd_kafka_conf_set(conf, "bootstrap.servers", "broker:9092", NULL, 0);
 
     // Create Kafka consumer
     rk = rd_kafka_new(RD_KAFKA_CONSUMER, conf, NULL, 0);
