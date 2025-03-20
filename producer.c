@@ -4,7 +4,7 @@
 
 #include <librdkafka/rdkafka.h>
 
-void send_job_result(const char* job_result) {
+void send_job_result(const char* job_result, char* topic) {
     rd_kafka_t *rk;
     rd_kafka_conf_t *conf;
     rd_kafka_resp_err_t err;
@@ -22,7 +22,7 @@ void send_job_result(const char* job_result) {
 
     err = rd_kafka_producev(
         rk,
-        RD_KAFKA_V_TOPIC("job-results"),
+        RD_KAFKA_V_TOPIC(topic), //"job-results"),
         RD_KAFKA_V_MSGFLAGS(RD_KAFKA_MSG_F_COPY),
         RD_KAFKA_V_VALUE(job_result, strlen(job_result)),
         RD_KAFKA_V_END);

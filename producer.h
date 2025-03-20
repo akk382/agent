@@ -5,6 +5,6 @@
 #ifndef PRODUCER_H
 #define PRODUCER_H
 
-void send_job_result(const char*);
+void send_job_result(const char*, char*);
 
 #endif //PRODUCER_H

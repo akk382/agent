@@ -19,7 +19,7 @@ void consume_jobs() {
     rk = rd_kafka_new(RD_KAFKA_CONSUMER, conf, NULL, 0);
     conf = NULL;
     if (!rk) {
-        fprintf(stderr, "Failed t create Kafka consumer\n");
+        fprintf(stderr, "Failed to create Kafka consumer\n");
         exit(1);
     }
 

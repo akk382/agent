@@ -3,11 +3,17 @@ project(agent C)
 
 set(CMAKE_C_STANDARD 11)
 
+find_package(cJSON REQUIRED)
+
 add_library(agent
-        library.c
+        consumer.h
+        producer.h
         execute_job.h
+        library.c
         execute_job.c
         consumer.c
         producer.c
-        consumer.h
-        producer.h)
+        main.c
+        test_producer.c)
+
+target_link_libraries(agent cjson)
